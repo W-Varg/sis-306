@@ -1,0 +1,19 @@
+{% extends "a_publico/barrio_pedania_base.html" %}
+
+{% block title %}
+    Update {{ barrio_pedania }}
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "a_publico:barrio_pedania_list" %}>BarrioPedania</a></h1>
+<h2>Update {{ barrio_pedania }}</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+<a href={% url "a_publico:barrio_pedania_detail" barrio_pedania.pk %}>Cancel</a>
+<form style="display:inline;" action={% url "a_publico:barrio_pedania_delete" barrio_pedania.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ barrio_pedania }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+</form>
+{% endblock %}

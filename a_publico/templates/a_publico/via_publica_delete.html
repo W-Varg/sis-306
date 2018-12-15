@@ -1,0 +1,17 @@
+{% extends "a_publico/via_publica_base.html" %}
+
+{% block title %}
+    Delete {{ via_publica }}
+{% endblock %}
+
+{% block content %}
+<h1>Delete {{ via_publica }}</h1>
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete {{ via_publica }}?</p>
+    <input type="submit" value="Confirm" />
+</form>
+
+<a href={% url "a_publico:via_publica_detail" via_publica.pk %}>Cancel</a>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "a_publico/catalogo_lamparas_base.html" %}
+
+{% block title %}
+    CatalogoLamparass
+{% endblock %}
+
+{% block content %}
+    <h1>CatalogoLamparass</h1>
+    <h2><a href={% url "a_publico:catalogo_lamparas_create" %}>Create new CatalogoLamparas</a></h2>
+    <ul>
+    {% for catalogo_lamparas in catalogo_lamparas_list %}
+        <li><a href={% url "a_publico:catalogo_lamparas_detail" catalogo_lamparas.pk %}>{{ catalogo_lamparas }}</a> | <a href={% url "a_publico:catalogo_lamparas_update" catalogo_lamparas.pk %}>Update</a> | <form style="display:inline;" action={% url "a_publico:catalogo_lamparas_delete" catalogo_lamparas.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_lamparas }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form></li>
+    {% empty %}
+        <li>No CatalogoLamparass yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

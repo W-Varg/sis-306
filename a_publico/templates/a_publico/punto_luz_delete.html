@@ -1,0 +1,17 @@
+{% extends "a_publico/punto_luz_base.html" %}
+
+{% block title %}
+    Delete {{ punto_luz }}
+{% endblock %}
+
+{% block content %}
+<h1>Delete {{ punto_luz }}</h1>
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete {{ punto_luz }}?</p>
+    <input type="submit" value="Confirm" />
+</form>
+
+<a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>Cancel</a>
+
+{% endblock %}

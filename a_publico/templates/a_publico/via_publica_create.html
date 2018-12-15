@@ -1,0 +1,16 @@
+{% extends "a_publico/via_publica_base.html" %}
+
+{% block title %}
+    Create ViaPublica
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "a_publico:via_publica_list" %}>ViaPublica</a></h1>
+<h2>Create ViaPublica</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+<a href={% url "a_publico:via_publica_list" %}>Cancel</a>
+{% endblock %}

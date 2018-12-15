@@ -1,0 +1,14 @@
+{% extends "a_publico/catalogo_lamparas_base.html" %}
+
+{% block title %}
+    {{ catalogo_lamparas }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "a_publico:catalogo_lamparas_list" %}>CatalogoLamparas</a></h1>
+    <h2>{{ catalogo_lamparas }} | <a href={% url "a_publico:catalogo_lamparas_update" catalogo_lamparas.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "a_publico:catalogo_lamparas_delete" catalogo_lamparas.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_lamparas }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}

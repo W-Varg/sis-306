@@ -1,0 +1,17 @@
+{% extends "a_publico/catalogo_lamparas_base.html" %}
+
+{% block title %}
+    Delete {{ catalogo_lamparas }}
+{% endblock %}
+
+{% block content %}
+<h1>Delete {{ catalogo_lamparas }}</h1>
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete {{ catalogo_lamparas }}?</p>
+    <input type="submit" value="Confirm" />
+</form>
+
+<a href={% url "a_publico:catalogo_lamparas_detail" catalogo_lamparas.pk %}>Cancel</a>
+
+{% endblock %}

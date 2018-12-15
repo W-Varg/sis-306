@@ -1,0 +1,14 @@
+{% extends "a_publico/cuadro_mando_base.html" %}
+
+{% block title %}
+    {{ cuadro_mando }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "a_publico:cuadro_mando_list" %}>CuadroMando</a></h1>
+    <h2>{{ cuadro_mando }} | <a href={% url "a_publico:cuadro_mando_update" cuadro_mando.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "a_publico:cuadro_mando_delete" cuadro_mando.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ cuadro_mando }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}

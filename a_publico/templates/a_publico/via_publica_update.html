@@ -1,0 +1,19 @@
+{% extends "a_publico/via_publica_base.html" %}
+
+{% block title %}
+    Update {{ via_publica }}
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "a_publico:via_publica_list" %}>ViaPublica</a></h1>
+<h2>Update {{ via_publica }}</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+<a href={% url "a_publico:via_publica_detail" via_publica.pk %}>Cancel</a>
+<form style="display:inline;" action={% url "a_publico:via_publica_delete" via_publica.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ via_publica }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+</form>
+{% endblock %}
