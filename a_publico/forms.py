@@ -399,7 +399,7 @@ class PuntoLuzForm(forms.ModelForm):
 
     class Meta:
         model = PuntoLuz
-        fields = ['codigopuntodeluz', 'codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'implanterenovacion']
+        fields = ['codigopuntodeluz', 'codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio','lat', 'lng', 'implanterenovacion']
         exclude = []
         widgets = None
         localized_fields = None

@@ -128,6 +128,8 @@ class PuntoLuz(models.Model):
     codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle')
     numero = models.CharField(max_length=5, blank=True, null=True)
     codigobarrio = models.ForeignKey(BarrioPedania, models.DO_NOTHING, db_column='codigobarrio')
+    lat = models.CharField(max_length=50)
+    lng = models.CharField(max_length=50)
     implanterenovacion = models.DateField(blank=True, null=True)
 
     class Meta:
