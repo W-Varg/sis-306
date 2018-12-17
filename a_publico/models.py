@@ -1,151 +1,95 @@
-# Create your models here.
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
+
 from django.db import models
 
-
 class BarrioPedania(models.Model):
-    codigobarrio = models.AutoField(primary_key=True)
     nombrebarrio = models.CharField(max_length=25)
 
-    class Meta:
-        managed = False
-        db_table = 'barrio_pedania'
-    
     def __str__(self):
         return self.nombrebarrio
 
-class CatalogoCalles(models.Model):
-    codigocalle = models.AutoField(primary_key=True)
-    codigotipovia = models.ForeignKey('ViaPublica', models.DO_NOTHING, db_column='codigotipovia')
-    nombrecalle = models.CharField(max_length=35)
+class ViaPublica(models.Model):
+    nombretipovia = models.CharField(max_length=15)
 
-    class Meta:
-        managed = False
-        db_table = 'catalogo_calles'
+    def __str__(self):
+        return self.nombretipovia
+
+class CatalogoLampara(models.Model):
+    nombrelampara = models.CharField(max_length=20)
+    pvp = models.FloatField(blank=True, null=True, default=0)
+    amortizacion = models.PositiveSmallIntegerField(blank=True, null=True,default=0,)
+    actualprecio = models.DateTimeField(auto_now_add=True, blank=True)
+    def __str__(self):
+        return self.nombrelampara
+
+class CatalogoCalle(models.Model):
+    codigotipovia = models.ForeignKey('ViaPublica', on_delete=models.CASCADE)
+    nombrecalle = models.CharField(max_length=35)
     
     def __str__(self):
         return '%s %s' % (self.codigotipovia, self.nombrecalle)
 
-class CatalogoLamparas(models.Model):
-    codigolampara = models.AutoField(primary_key=True)
-    nombrelampara = models.CharField(max_length=20)
-    pvp = models.SmallIntegerField(blank=True, null=True)
-    amortizacion = models.SmallIntegerField(blank=True, null=True)
-    actualprecio = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'catalogo_lamparas'
-
-    def __str__(self):
-        return self.nombrelampara
-
-class CatalogoLuminarias(models.Model):
-    codigoluminaria = models.AutoField(primary_key=True)
+class CatalogoLuminaria(models.Model):
     nombreluminaria = models.CharField(max_length=30)
-    pvp = models.SmallIntegerField(blank=True, null=True)
-    amortizacion = models.SmallIntegerField(blank=True, null=True)
-    actualprecio = models.DateField(blank=True, null=True)
-    codigolampara = models.ForeignKey(CatalogoLamparas, models.DO_NOTHING, db_column='codigolampara', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'catalogo_luminarias'
+    pvp = models.FloatField(blank=True, null=True, default=0)
+    amortizacion = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
+    actualprecio = models.DateTimeField(auto_now_add=True, blank=True)
+    codigolampara = models.ForeignKey('CatalogoLampara', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nombreluminaria
-        
+        return '%s %s' % (self.nombreluminaria,self.actualprecio)
 
-class CatalogoSoportes(models.Model):
-    codigosoporte = models.AutoField(primary_key=True)
+class CatalogoSoporte(models.Model):
     nombresoporte = models.CharField(max_length=30)
-    pvp = models.SmallIntegerField(blank=True, null=True)
-    amortizacion = models.SmallIntegerField(blank=True, null=True)
-    actualprecio = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'catalogo_soportes'
+    pvp = models.FloatField(blank=True, null=True, default=0)
+    amortizacion = models.PositiveSmallIntegerField(blank=True, null=True)
+    actualprecio = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
-        return self.nombresoporte
-        
-
-class CuadroMando(models.Model):
-    cuadrocodigo = models.AutoField(primary_key=True)
-    codigoindentificacion = models.CharField(max_length=12)
-    codigocontadores = models.ForeignKey('EquiposMedida', models.DO_NOTHING, db_column='codigocontadores')
-    codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle')
-    numero = models.SmallIntegerField(blank=True, null=True)
-    codigobarrio = models.ForeignKey(BarrioPedania, models.DO_NOTHING, db_column='codigobarrio')
-    tipocuadro = models.SmallIntegerField()
-    salidasutilizadas = models.SmallIntegerField(blank=True, null=True)
-    mgtentrada = models.SmallIntegerField(blank=True, null=True)
-    fachada = models.BooleanField(blank=True, null=True)
-    alimentacionfn = models.BooleanField(db_column='alimentacionFN', blank=True, null=True)  # Field name made lowercase.
-    alimentacion3fn = models.BooleanField(db_column='alimentacion3FN', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'cuadro_mando'
-
-    def __str__(self):
-        return '%s %s %s' % (self.codigoindentificacion, self.codigocontadores, self.codigobarrio)
-
+        return '%s %s' % (self.nombresoporte, self.actualprecio)
 
 class EquiposMedida(models.Model):
-    codigocontadores = models.AutoField(primary_key=True)
     codigoidentificacion = models.CharField(max_length=12)
-    codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle', blank=True, null=True)
+    codigocalle = models.ForeignKey('CatalogoCalle', on_delete=models.CASCADE)
     numero = models.SmallIntegerField(blank=True, null=True)
-    codigobarrio = models.ForeignKey(BarrioPedania, models.DO_NOTHING, db_column='codigobarrio', blank=True, null=True)
-    kwcontrato = models.SmallIntegerField(blank=True, null=True)
+    codigobarrio = models.ForeignKey('BarrioPedania', on_delete=models.CASCADE)
+    kwcontrato = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
     numeroactiva = models.CharField(max_length=10, blank=True, null=True)
     numeroreactiva = models.CharField(max_length=10, blank=True, null=True)
     monofasico = models.BooleanField(blank=True, null=True)
     lecturadirecta = models.BooleanField(blank=True, null=True)
     lecturaindirecta = models.BooleanField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'equipos_medida'
-
     def __str__(self):
-        return '%s %s' % (self.codigoidentificacion, self.codigobarrio)
+        return '%s %s' % (self.codigoidentificacion, self.kwcontrato)        
+
+class CuadroMando(models.Model):
+    codigoindentificacion = models.CharField(max_length=12)
+    codigocontadores = models.ForeignKey('EquiposMedida', on_delete=models.CASCADE)
+    codigocalle = models.ForeignKey('CatalogoCalle', on_delete=models.CASCADE)
+    numero = models.SmallIntegerField(blank=True, null=True)
+    codigobarrio = models.ForeignKey('BarrioPedania', on_delete=models.CASCADE)
+    tipocuadro = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
+    salidasutilizadas = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
+    mgtentrada = models.FloatField(blank=True, null=True, default=0)
+    fachada = models.BooleanField(blank=True, null=True)
+    alimentacionfn = models.BooleanField(blank=True, null=True)
+    alimentacion3fn = models.BooleanField(blank=True, null=True)
+    def __str__(self):
+        return '%s %s %s' % (self.codigoindentificacion, self.codigocontadores, self.codigobarrio)
 
 
 class PuntoLuz(models.Model):
-    codigopuntodeluz = models.AutoField(primary_key=True)
-    codigosoporte = models.ForeignKey(CatalogoSoportes, models.DO_NOTHING, db_column='codigosoporte')
-    codigoluminaria = models.ForeignKey(CatalogoLuminarias, models.DO_NOTHING, db_column='codigoluminaria')
-    codigocuadro = models.ForeignKey(CuadroMando, models.DO_NOTHING, db_column='codigocuadro')
-    codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle')
+    codigosoporte = models.ForeignKey('CatalogoSoporte', on_delete=models.CASCADE)
+    codigoluminaria = models.ForeignKey('CatalogoLuminaria', on_delete=models.CASCADE)
+    codigocuadro = models.ForeignKey('CuadroMando', on_delete=models.CASCADE)
+    codigocalle = models.ForeignKey('CatalogoCalle', on_delete=models.CASCADE)
     numero = models.CharField(max_length=5, blank=True, null=True)
-    codigobarrio = models.ForeignKey(BarrioPedania, models.DO_NOTHING, db_column='codigobarrio')
+    codigobarrio = models.ForeignKey('BarrioPedania', on_delete=models.CASCADE)
     lat = models.CharField(max_length=50)
     lng = models.CharField(max_length=50)
-    implanterenovacion = models.DateField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'punto_luz'
+    implanterenovacion = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return '%s %s' % (self.codigobarrio, self.codigocalle)
 
-class ViaPublica(models.Model):
-    codigotipovia = models.AutoField(primary_key=True)
-    nombretipovia = models.CharField(max_length=15)
-
-    class Meta:
-        managed = False
-        db_table = 'via_publica'
-
-    def __str__(self):
-        return self.nombretipovia
+# ================LISTOS============

@@ -1,12 +1,12 @@
 from django import forms
-from .models import BarrioPedania, CatalogoCalles, CatalogoLamparas, CatalogoLuminarias, CatalogoSoportes, CuadroMando, EquiposMedida, PuntoLuz, ViaPublica
+from .models import BarrioPedania, ViaPublica, CatalogoCalle, CatalogoLampara, CatalogoLuminaria, CatalogoSoporte, EquiposMedida, CuadroMando, PuntoLuz
 
 
 class BarrioPedaniaForm(forms.ModelForm):
 
     class Meta:
         model = BarrioPedania
-        fields = ['codigobarrio', 'nombrebarrio']
+        fields = ['nombrebarrio']
         exclude = []
         widgets = None
         localized_fields = None
@@ -23,10 +23,6 @@ class BarrioPedaniaForm(forms.ModelForm):
     def full_clean(self):
         return super(BarrioPedaniaForm, self).full_clean()
 
-    def clean_codigobarrio(self):
-        codigobarrio = self.cleaned_data.get("codigobarrio", None)
-        return codigobarrio
-
     def clean_nombrebarrio(self):
         nombrebarrio = self.cleaned_data.get("nombrebarrio", None)
         return nombrebarrio
@@ -41,11 +37,11 @@ class BarrioPedaniaForm(forms.ModelForm):
         return super(BarrioPedaniaForm, self).save(commit)
 
 
-class CatalogoCallesForm(forms.ModelForm):
+class ViaPublicaForm(forms.ModelForm):
 
     class Meta:
-        model = CatalogoCalles
-        fields = ['codigocalle', 'codigotipovia', 'nombrecalle']
+        model = ViaPublica
+        fields = ['nombretipovia']
         exclude = []
         widgets = None
         localized_fields = None
@@ -54,17 +50,48 @@ class CatalogoCallesForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(CatalogoCallesForm, self).__init__(*args, **kwargs)
+        return super(ViaPublicaForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(CatalogoCallesForm, self).is_valid()
+        return super(ViaPublicaForm, self).is_valid()
 
     def full_clean(self):
-        return super(CatalogoCallesForm, self).full_clean()
+        return super(ViaPublicaForm, self).full_clean()
 
-    def clean_codigocalle(self):
-        codigocalle = self.cleaned_data.get("codigocalle", None)
-        return codigocalle
+    def clean_nombretipovia(self):
+        nombretipovia = self.cleaned_data.get("nombretipovia", None)
+        return nombretipovia
+
+    def clean(self):
+        return super(ViaPublicaForm, self).clean()
+
+    def validate_unique(self):
+        return super(ViaPublicaForm, self).validate_unique()
+
+    def save(self, commit=True):
+        return super(ViaPublicaForm, self).save(commit)
+
+
+class CatalogoCalleForm(forms.ModelForm):
+
+    class Meta:
+        model = CatalogoCalle
+        fields = ['codigotipovia', 'nombrecalle']
+        exclude = []
+        widgets = None
+        localized_fields = None
+        labels = {}
+        help_texts = {}
+        error_messages = {}
+
+    def __init__(self, *args, **kwargs):
+        return super(CatalogoCalleForm, self).__init__(*args, **kwargs)
+
+    def is_valid(self):
+        return super(CatalogoCalleForm, self).is_valid()
+
+    def full_clean(self):
+        return super(CatalogoCalleForm, self).full_clean()
 
     def clean_codigotipovia(self):
         codigotipovia = self.cleaned_data.get("codigotipovia", None)
@@ -75,20 +102,20 @@ class CatalogoCallesForm(forms.ModelForm):
         return nombrecalle
 
     def clean(self):
-        return super(CatalogoCallesForm, self).clean()
+        return super(CatalogoCalleForm, self).clean()
 
     def validate_unique(self):
-        return super(CatalogoCallesForm, self).validate_unique()
+        return super(CatalogoCalleForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(CatalogoCallesForm, self).save(commit)
+        return super(CatalogoCalleForm, self).save(commit)
 
 
-class CatalogoLamparasForm(forms.ModelForm):
+class CatalogoLamparaForm(forms.ModelForm):
 
     class Meta:
-        model = CatalogoLamparas
-        fields = ['codigolampara', 'nombrelampara', 'pvp', 'amortizacion', 'actualprecio']
+        model = CatalogoLampara
+        fields = ['nombrelampara', 'pvp', 'amortizacion']
         exclude = []
         widgets = None
         localized_fields = None
@@ -97,17 +124,13 @@ class CatalogoLamparasForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(CatalogoLamparasForm, self).__init__(*args, **kwargs)
+        return super(CatalogoLamparaForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(CatalogoLamparasForm, self).is_valid()
+        return super(CatalogoLamparaForm, self).is_valid()
 
     def full_clean(self):
-        return super(CatalogoLamparasForm, self).full_clean()
-
-    def clean_codigolampara(self):
-        codigolampara = self.cleaned_data.get("codigolampara", None)
-        return codigolampara
+        return super(CatalogoLamparaForm, self).full_clean()
 
     def clean_nombrelampara(self):
         nombrelampara = self.cleaned_data.get("nombrelampara", None)
@@ -121,25 +144,21 @@ class CatalogoLamparasForm(forms.ModelForm):
         amortizacion = self.cleaned_data.get("amortizacion", None)
         return amortizacion
 
-    def clean_actualprecio(self):
-        actualprecio = self.cleaned_data.get("actualprecio", None)
-        return actualprecio
-
     def clean(self):
-        return super(CatalogoLamparasForm, self).clean()
+        return super(CatalogoLamparaForm, self).clean()
 
     def validate_unique(self):
-        return super(CatalogoLamparasForm, self).validate_unique()
+        return super(CatalogoLamparaForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(CatalogoLamparasForm, self).save(commit)
+        return super(CatalogoLamparaForm, self).save(commit)
 
 
-class CatalogoLuminariasForm(forms.ModelForm):
+class CatalogoLuminariaForm(forms.ModelForm):
 
     class Meta:
-        model = CatalogoLuminarias
-        fields = ['codigoluminaria', 'nombreluminaria', 'pvp', 'amortizacion', 'actualprecio', 'codigolampara']
+        model = CatalogoLuminaria
+        fields = ['nombreluminaria', 'pvp', 'amortizacion', 'codigolampara']
         exclude = []
         widgets = None
         localized_fields = None
@@ -148,17 +167,13 @@ class CatalogoLuminariasForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(CatalogoLuminariasForm, self).__init__(*args, **kwargs)
+        return super(CatalogoLuminariaForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(CatalogoLuminariasForm, self).is_valid()
+        return super(CatalogoLuminariaForm, self).is_valid()
 
     def full_clean(self):
-        return super(CatalogoLuminariasForm, self).full_clean()
-
-    def clean_codigoluminaria(self):
-        codigoluminaria = self.cleaned_data.get("codigoluminaria", None)
-        return codigoluminaria
+        return super(CatalogoLuminariaForm, self).full_clean()
 
     def clean_nombreluminaria(self):
         nombreluminaria = self.cleaned_data.get("nombreluminaria", None)
@@ -172,29 +187,25 @@ class CatalogoLuminariasForm(forms.ModelForm):
         amortizacion = self.cleaned_data.get("amortizacion", None)
         return amortizacion
 
-    def clean_actualprecio(self):
-        actualprecio = self.cleaned_data.get("actualprecio", None)
-        return actualprecio
-
     def clean_codigolampara(self):
         codigolampara = self.cleaned_data.get("codigolampara", None)
         return codigolampara
 
     def clean(self):
-        return super(CatalogoLuminariasForm, self).clean()
+        return super(CatalogoLuminariaForm, self).clean()
 
     def validate_unique(self):
-        return super(CatalogoLuminariasForm, self).validate_unique()
+        return super(CatalogoLuminariaForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(CatalogoLuminariasForm, self).save(commit)
+        return super(CatalogoLuminariaForm, self).save(commit)
 
 
-class CatalogoSoportesForm(forms.ModelForm):
+class CatalogoSoporteForm(forms.ModelForm):
 
     class Meta:
-        model = CatalogoSoportes
-        fields = ['codigosoporte', 'nombresoporte', 'pvp', 'amortizacion', 'actualprecio']
+        model = CatalogoSoporte
+        fields = ['nombresoporte', 'pvp', 'amortizacion']
         exclude = []
         widgets = None
         localized_fields = None
@@ -203,17 +214,13 @@ class CatalogoSoportesForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(CatalogoSoportesForm, self).__init__(*args, **kwargs)
+        return super(CatalogoSoporteForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(CatalogoSoportesForm, self).is_valid()
+        return super(CatalogoSoporteForm, self).is_valid()
 
     def full_clean(self):
-        return super(CatalogoSoportesForm, self).full_clean()
-
-    def clean_codigosoporte(self):
-        codigosoporte = self.cleaned_data.get("codigosoporte", None)
-        return codigosoporte
+        return super(CatalogoSoporteForm, self).full_clean()
 
     def clean_nombresoporte(self):
         nombresoporte = self.cleaned_data.get("nombresoporte", None)
@@ -227,25 +234,92 @@ class CatalogoSoportesForm(forms.ModelForm):
         amortizacion = self.cleaned_data.get("amortizacion", None)
         return amortizacion
 
-    def clean_actualprecio(self):
-        actualprecio = self.cleaned_data.get("actualprecio", None)
-        return actualprecio
-
     def clean(self):
-        return super(CatalogoSoportesForm, self).clean()
+        return super(CatalogoSoporteForm, self).clean()
 
     def validate_unique(self):
-        return super(CatalogoSoportesForm, self).validate_unique()
+        return super(CatalogoSoporteForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(CatalogoSoportesForm, self).save(commit)
+        return super(CatalogoSoporteForm, self).save(commit)
+
+
+class EquiposMedidaForm(forms.ModelForm):
+
+    class Meta:
+        model = EquiposMedida
+        fields = ['codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
+        exclude = []
+        widgets = None
+        localized_fields = None
+        labels = {}
+        help_texts = {}
+        error_messages = {}
+
+    def __init__(self, *args, **kwargs):
+        return super(EquiposMedidaForm, self).__init__(*args, **kwargs)
+
+    def is_valid(self):
+        return super(EquiposMedidaForm, self).is_valid()
+
+    def full_clean(self):
+        return super(EquiposMedidaForm, self).full_clean()
+
+    def clean_codigoidentificacion(self):
+        codigoidentificacion = self.cleaned_data.get("codigoidentificacion", None)
+        return codigoidentificacion
+
+    def clean_codigocalle(self):
+        codigocalle = self.cleaned_data.get("codigocalle", None)
+        return codigocalle
+
+    def clean_numero(self):
+        numero = self.cleaned_data.get("numero", None)
+        return numero
+
+    def clean_codigobarrio(self):
+        codigobarrio = self.cleaned_data.get("codigobarrio", None)
+        return codigobarrio
+
+    def clean_kwcontrato(self):
+        kwcontrato = self.cleaned_data.get("kwcontrato", None)
+        return kwcontrato
+
+    def clean_numeroactiva(self):
+        numeroactiva = self.cleaned_data.get("numeroactiva", None)
+        return numeroactiva
+
+    def clean_numeroreactiva(self):
+        numeroreactiva = self.cleaned_data.get("numeroreactiva", None)
+        return numeroreactiva
+
+    def clean_monofasico(self):
+        monofasico = self.cleaned_data.get("monofasico", None)
+        return monofasico
+
+    def clean_lecturadirecta(self):
+        lecturadirecta = self.cleaned_data.get("lecturadirecta", None)
+        return lecturadirecta
+
+    def clean_lecturaindirecta(self):
+        lecturaindirecta = self.cleaned_data.get("lecturaindirecta", None)
+        return lecturaindirecta
+
+    def clean(self):
+        return super(EquiposMedidaForm, self).clean()
+
+    def validate_unique(self):
+        return super(EquiposMedidaForm, self).validate_unique()
+
+    def save(self, commit=True):
+        return super(EquiposMedidaForm, self).save(commit)
 
 
 class CuadroMandoForm(forms.ModelForm):
 
     class Meta:
         model = CuadroMando
-        fields = ['cuadrocodigo', 'codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
+        fields = ['codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
         exclude = []
         widgets = None
         localized_fields = None
@@ -261,10 +335,6 @@ class CuadroMandoForm(forms.ModelForm):
 
     def full_clean(self):
         return super(CuadroMandoForm, self).full_clean()
-
-    def clean_cuadrocodigo(self):
-        cuadrocodigo = self.cleaned_data.get("cuadrocodigo", None)
-        return cuadrocodigo
 
     def clean_codigoindentificacion(self):
         codigoindentificacion = self.cleaned_data.get("codigoindentificacion", None)
@@ -320,86 +390,11 @@ class CuadroMandoForm(forms.ModelForm):
         return super(CuadroMandoForm, self).save(commit)
 
 
-class EquiposMedidaForm(forms.ModelForm):
-
-    class Meta:
-        model = EquiposMedida
-        fields = ['codigocontadores', 'codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
-        exclude = []
-        widgets = None
-        localized_fields = None
-        labels = {}
-        help_texts = {}
-        error_messages = {}
-
-    def __init__(self, *args, **kwargs):
-        return super(EquiposMedidaForm, self).__init__(*args, **kwargs)
-
-    def is_valid(self):
-        return super(EquiposMedidaForm, self).is_valid()
-
-    def full_clean(self):
-        return super(EquiposMedidaForm, self).full_clean()
-
-    def clean_codigocontadores(self):
-        codigocontadores = self.cleaned_data.get("codigocontadores", None)
-        return codigocontadores
-
-    def clean_codigoidentificacion(self):
-        codigoidentificacion = self.cleaned_data.get("codigoidentificacion", None)
-        return codigoidentificacion
-
-    def clean_codigocalle(self):
-        codigocalle = self.cleaned_data.get("codigocalle", None)
-        return codigocalle
-
-    def clean_numero(self):
-        numero = self.cleaned_data.get("numero", None)
-        return numero
-
-    def clean_codigobarrio(self):
-        codigobarrio = self.cleaned_data.get("codigobarrio", None)
-        return codigobarrio
-
-    def clean_kwcontrato(self):
-        kwcontrato = self.cleaned_data.get("kwcontrato", None)
-        return kwcontrato
-
-    def clean_numeroactiva(self):
-        numeroactiva = self.cleaned_data.get("numeroactiva", None)
-        return numeroactiva
-
-    def clean_numeroreactiva(self):
-        numeroreactiva = self.cleaned_data.get("numeroreactiva", None)
-        return numeroreactiva
-
-    def clean_monofasico(self):
-        monofasico = self.cleaned_data.get("monofasico", None)
-        return monofasico
-
-    def clean_lecturadirecta(self):
-        lecturadirecta = self.cleaned_data.get("lecturadirecta", None)
-        return lecturadirecta
-
-    def clean_lecturaindirecta(self):
-        lecturaindirecta = self.cleaned_data.get("lecturaindirecta", None)
-        return lecturaindirecta
-
-    def clean(self):
-        return super(EquiposMedidaForm, self).clean()
-
-    def validate_unique(self):
-        return super(EquiposMedidaForm, self).validate_unique()
-
-    def save(self, commit=True):
-        return super(EquiposMedidaForm, self).save(commit)
-
-
 class PuntoLuzForm(forms.ModelForm):
 
     class Meta:
         model = PuntoLuz
-        fields = ['codigopuntodeluz', 'codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio','lat', 'lng', 'implanterenovacion']
+        fields = ['codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'lat', 'lng']
         exclude = []
         widgets = None
         localized_fields = None
@@ -415,10 +410,6 @@ class PuntoLuzForm(forms.ModelForm):
 
     def full_clean(self):
         return super(PuntoLuzForm, self).full_clean()
-
-    def clean_codigopuntodeluz(self):
-        codigopuntodeluz = self.cleaned_data.get("codigopuntodeluz", None)
-        return codigopuntodeluz
 
     def clean_codigosoporte(self):
         codigosoporte = self.cleaned_data.get("codigosoporte", None)
@@ -444,9 +435,13 @@ class PuntoLuzForm(forms.ModelForm):
         codigobarrio = self.cleaned_data.get("codigobarrio", None)
         return codigobarrio
 
-    def clean_implanterenovacion(self):
-        implanterenovacion = self.cleaned_data.get("implanterenovacion", None)
-        return implanterenovacion
+    def clean_lat(self):
+        lat = self.cleaned_data.get("lat", None)
+        return lat
+
+    def clean_lng(self):
+        lng = self.cleaned_data.get("lng", None)
+        return lng
 
     def clean(self):
         return super(PuntoLuzForm, self).clean()
@@ -456,43 +451,4 @@ class PuntoLuzForm(forms.ModelForm):
 
     def save(self, commit=True):
         return super(PuntoLuzForm, self).save(commit)
-
-
-class ViaPublicaForm(forms.ModelForm):
-
-    class Meta:
-        model = ViaPublica
-        fields = ['codigotipovia', 'nombretipovia']
-        exclude = []
-        widgets = None
-        localized_fields = None
-        labels = {}
-        help_texts = {}
-        error_messages = {}
-
-    def __init__(self, *args, **kwargs):
-        return super(ViaPublicaForm, self).__init__(*args, **kwargs)
-
-    def is_valid(self):
-        return super(ViaPublicaForm, self).is_valid()
-
-    def full_clean(self):
-        return super(ViaPublicaForm, self).full_clean()
-
-    def clean_codigotipovia(self):
-        codigotipovia = self.cleaned_data.get("codigotipovia", None)
-        return codigotipovia
-
-    def clean_nombretipovia(self):
-        nombretipovia = self.cleaned_data.get("nombretipovia", None)
-        return nombretipovia
-
-    def clean(self):
-        return super(ViaPublicaForm, self).clean()
-
-    def validate_unique(self):
-        return super(ViaPublicaForm, self).validate_unique()
-
-    def save(self, commit=True):
-        return super(ViaPublicaForm, self).save(commit)
 

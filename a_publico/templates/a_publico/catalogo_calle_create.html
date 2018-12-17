@@ -1,0 +1,16 @@
+{% extends "a_publico/catalogo_calle_base.html" %}
+
+{% block title %}
+    Create CatalogoCalle
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "a_publico:catalogo_calle_list" %}>CatalogoCalle</a></h1>
+<h2>Create CatalogoCalle</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+<a href={% url "a_publico:catalogo_calle_list" %}>Cancel</a>
+{% endblock %}

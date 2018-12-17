@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'alumbrado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alumbrado_p',
+        'NAME': 'alumbrado_pu',
         'PORT': 5432,
         'HOST': 'localhost',
         'USER': 'postgres',

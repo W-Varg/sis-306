@@ -98,7 +98,7 @@ class PuntoLuzDetailView(DetailView):
 class PuntoLuzCreateView(CreateView):
     model = PuntoLuz
     form_class = PuntoLuzForm
-    # fields = ['codigopuntodeluz', 'codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'implanterenovacion']
+    # fields = ['codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'lat', 'lng']
     template_name = "a_publico/punto_luz_create.html"
     success_url = reverse_lazy("punto_luz_list")
 
@@ -151,7 +151,7 @@ class PuntoLuzCreateView(CreateView):
 class PuntoLuzUpdateView(UpdateView):
     model = PuntoLuz
     form_class = PuntoLuzForm
-    # fields = ['codigopuntodeluz', 'codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'implanterenovacion']
+    # fields = ['codigosoporte', 'codigoluminaria', 'codigocuadro', 'codigocalle', 'numero', 'codigobarrio', 'lat', 'lng']
     template_name = "a_publico/punto_luz_update.html"
     initial = {}
     slug_field = 'slug'

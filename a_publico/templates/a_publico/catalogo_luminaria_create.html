@@ -1,0 +1,16 @@
+{% extends "a_publico/catalogo_luminaria_base.html" %}
+
+{% block title %}
+    Create CatalogoLuminaria
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "a_publico:catalogo_luminaria_list" %}>CatalogoLuminaria</a></h1>
+<h2>Create CatalogoLuminaria</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+<a href={% url "a_publico:catalogo_luminaria_list" %}>Cancel</a>
+{% endblock %}

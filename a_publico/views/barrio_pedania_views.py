@@ -98,7 +98,7 @@ class BarrioPedaniaDetailView(DetailView):
 class BarrioPedaniaCreateView(CreateView):
     model = BarrioPedania
     form_class = BarrioPedaniaForm
-    # fields = ['codigobarrio', 'nombrebarrio']
+    # fields = ['nombrebarrio']
     template_name = "a_publico/barrio_pedania_create.html"
     success_url = reverse_lazy("barrio_pedania_list")
 
@@ -151,7 +151,7 @@ class BarrioPedaniaCreateView(CreateView):
 class BarrioPedaniaUpdateView(UpdateView):
     model = BarrioPedania
     form_class = BarrioPedaniaForm
-    # fields = ['codigobarrio', 'nombrebarrio']
+    # fields = ['nombrebarrio']
     template_name = "a_publico/barrio_pedania_update.html"
     initial = {}
     slug_field = 'slug'

@@ -98,7 +98,7 @@ class EquiposMedidaDetailView(DetailView):
 class EquiposMedidaCreateView(CreateView):
     model = EquiposMedida
     form_class = EquiposMedidaForm
-    # fields = ['codigocontadores', 'codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
+    # fields = ['codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
     template_name = "a_publico/equipos_medida_create.html"
     success_url = reverse_lazy("equipos_medida_list")
 
@@ -151,7 +151,7 @@ class EquiposMedidaCreateView(CreateView):
 class EquiposMedidaUpdateView(UpdateView):
     model = EquiposMedida
     form_class = EquiposMedidaForm
-    # fields = ['codigocontadores', 'codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
+    # fields = ['codigoidentificacion', 'codigocalle', 'numero', 'codigobarrio', 'kwcontrato', 'numeroactiva', 'numeroreactiva', 'monofasico', 'lecturadirecta', 'lecturaindirecta']
     template_name = "a_publico/equipos_medida_update.html"
     initial = {}
     slug_field = 'slug'

@@ -98,7 +98,7 @@ class CuadroMandoDetailView(DetailView):
 class CuadroMandoCreateView(CreateView):
     model = CuadroMando
     form_class = CuadroMandoForm
-    # fields = ['cuadrocodigo', 'codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
+    # fields = ['codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
     template_name = "a_publico/cuadro_mando_create.html"
     success_url = reverse_lazy("cuadro_mando_list")
 
@@ -151,7 +151,7 @@ class CuadroMandoCreateView(CreateView):
 class CuadroMandoUpdateView(UpdateView):
     model = CuadroMando
     form_class = CuadroMandoForm
-    # fields = ['cuadrocodigo', 'codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
+    # fields = ['codigoindentificacion', 'codigocontadores', 'codigocalle', 'numero', 'codigobarrio', 'tipocuadro', 'salidasutilizadas', 'mgtentrada', 'fachada', 'alimentacionfn', 'alimentacion3fn']
     template_name = "a_publico/cuadro_mando_update.html"
     initial = {}
     slug_field = 'slug'

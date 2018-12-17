@@ -98,7 +98,7 @@ class ViaPublicaDetailView(DetailView):
 class ViaPublicaCreateView(CreateView):
     model = ViaPublica
     form_class = ViaPublicaForm
-    # fields = ['codigotipovia', 'nombretipovia']
+    # fields = ['nombretipovia']
     template_name = "a_publico/via_publica_create.html"
     success_url = reverse_lazy("via_publica_list")
 
@@ -151,7 +151,7 @@ class ViaPublicaCreateView(CreateView):
 class ViaPublicaUpdateView(UpdateView):
     model = ViaPublica
     form_class = ViaPublicaForm
-    # fields = ['codigotipovia', 'nombretipovia']
+    # fields = ['nombretipovia']
     template_name = "a_publico/via_publica_update.html"
     initial = {}
     slug_field = 'slug'

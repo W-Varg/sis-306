@@ -1,0 +1,14 @@
+{% extends "a_publico/catalogo_calle_base.html" %}
+
+{% block title %}
+    {{ catalogo_calle }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "a_publico:catalogo_calle_list" %}>CatalogoCalle</a></h1>
+    <h2>{{ catalogo_calle }} | <a href={% url "a_publico:catalogo_calle_update" catalogo_calle.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "a_publico:catalogo_calle_delete" catalogo_calle.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_calle }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}
