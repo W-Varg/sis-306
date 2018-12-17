@@ -10,7 +10,7 @@ from django.db import models
 
 
 class BarrioPedania(models.Model):
-    codigobarrio = models.SmallIntegerField(primary_key=True)
+    codigobarrio = models.AutoField(primary_key=True)
     nombrebarrio = models.CharField(max_length=25)
 
     class Meta:
@@ -21,7 +21,7 @@ class BarrioPedania(models.Model):
         return self.nombrebarrio
 
 class CatalogoCalles(models.Model):
-    codigocalle = models.SmallIntegerField(primary_key=True)
+    codigocalle = models.AutoField(primary_key=True)
     codigotipovia = models.ForeignKey('ViaPublica', models.DO_NOTHING, db_column='codigotipovia')
     nombrecalle = models.CharField(max_length=35)
 
@@ -33,7 +33,7 @@ class CatalogoCalles(models.Model):
         return '%s %s' % (self.codigotipovia, self.nombrecalle)
 
 class CatalogoLamparas(models.Model):
-    codigolampara = models.SmallIntegerField(primary_key=True)
+    codigolampara = models.AutoField(primary_key=True)
     nombrelampara = models.CharField(max_length=20)
     pvp = models.SmallIntegerField(blank=True, null=True)
     amortizacion = models.SmallIntegerField(blank=True, null=True)
@@ -47,7 +47,7 @@ class CatalogoLamparas(models.Model):
         return self.nombrelampara
 
 class CatalogoLuminarias(models.Model):
-    codigoluminaria = models.SmallIntegerField(primary_key=True)
+    codigoluminaria = models.AutoField(primary_key=True)
     nombreluminaria = models.CharField(max_length=30)
     pvp = models.SmallIntegerField(blank=True, null=True)
     amortizacion = models.SmallIntegerField(blank=True, null=True)
@@ -63,7 +63,7 @@ class CatalogoLuminarias(models.Model):
         
 
 class CatalogoSoportes(models.Model):
-    codigosoporte = models.SmallIntegerField(primary_key=True)
+    codigosoporte = models.AutoField(primary_key=True)
     nombresoporte = models.CharField(max_length=30)
     pvp = models.SmallIntegerField(blank=True, null=True)
     amortizacion = models.SmallIntegerField(blank=True, null=True)
@@ -78,7 +78,7 @@ class CatalogoSoportes(models.Model):
         
 
 class CuadroMando(models.Model):
-    cuadrocodigo = models.SmallIntegerField(primary_key=True)
+    cuadrocodigo = models.AutoField(primary_key=True)
     codigoindentificacion = models.CharField(max_length=12)
     codigocontadores = models.ForeignKey('EquiposMedida', models.DO_NOTHING, db_column='codigocontadores')
     codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle')
@@ -100,7 +100,7 @@ class CuadroMando(models.Model):
 
 
 class EquiposMedida(models.Model):
-    codigocontadores = models.SmallIntegerField(primary_key=True)
+    codigocontadores = models.AutoField(primary_key=True)
     codigoidentificacion = models.CharField(max_length=12)
     codigocalle = models.ForeignKey(CatalogoCalles, models.DO_NOTHING, db_column='codigocalle', blank=True, null=True)
     numero = models.SmallIntegerField(blank=True, null=True)
@@ -121,7 +121,7 @@ class EquiposMedida(models.Model):
 
 
 class PuntoLuz(models.Model):
-    codigopuntodeluz = models.SmallIntegerField(primary_key=True)
+    codigopuntodeluz = models.AutoField(primary_key=True)
     codigosoporte = models.ForeignKey(CatalogoSoportes, models.DO_NOTHING, db_column='codigosoporte')
     codigoluminaria = models.ForeignKey(CatalogoLuminarias, models.DO_NOTHING, db_column='codigoluminaria')
     codigocuadro = models.ForeignKey(CuadroMando, models.DO_NOTHING, db_column='codigocuadro')
@@ -140,7 +140,7 @@ class PuntoLuz(models.Model):
         return '%s %s' % (self.codigobarrio, self.codigocalle)
 
 class ViaPublica(models.Model):
-    codigotipovia = models.SmallIntegerField(primary_key=True)
+    codigotipovia = models.AutoField(primary_key=True)
     nombretipovia = models.CharField(max_length=15)
 
     class Meta:
