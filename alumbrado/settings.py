@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'alumbrado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alumbrado_pu',
+        'NAME': 'd475lv50ahj9ub',
         'PORT': 5432,
-        'HOST': 'localhost',
-        'USER': 'postgres',
-        'PASSWORD' : '1234'
+        'HOST': 'ec2-54-204-41-148.compute-1.amazonaws.com',
+        'USER': 'ulkzeskoivlcsw',
+        'PASSWORD' : '6b18ec512521a10a2881594744aced9e1451e7626e8228c4769caa8420233066'
     }
 }
 
