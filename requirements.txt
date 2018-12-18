@@ -1,0 +1,12 @@
+aniso8601==3.0.2
+Django==2.1.2
+django-baker==0.22
+django-filters==0.2.1
+django-map-widgets==0.2.1
+graphql-core==2.1
+graphql-relay==0.4.5
+numpy==1.15.4
+promise==2.2.1
+psycopg2==2.7.5
+python-dateutil==2.7.5
+pytz==2018.7
