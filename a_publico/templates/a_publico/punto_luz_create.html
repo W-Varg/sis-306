@@ -16,9 +16,9 @@
         
     <form action="" method="post">{% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Crear" />
+        <input type="submit" class="btn btn-info" value="Crear" />
     </form>
-    <a href={% url "a_publico:punto_luz_list" %}>Cancel</a>
+    <a href={% url "a_publico:punto_luz_list" %} class="btn btn-warning" >Cancelar</a>
     </div>
 </div>
 <script>

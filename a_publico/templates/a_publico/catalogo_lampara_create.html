@@ -10,7 +10,7 @@
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Crear" />
+    <input type="submit" class="btn btn-info" value="Crear" />
 </form>
-<a href={% url "a_publico:catalogo_lampara_list" %}>Cancel</a>
+<a href={% url "a_publico:catalogo_lampara_list" %} class="btn btn-warning" >Cancelar</a>
 {% endblock %}
