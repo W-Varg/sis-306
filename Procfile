@@ -1,1 +1,1 @@
-web: gunicorn alumbrado.wsgi
+web: gunicorn sis-306.wsgi
