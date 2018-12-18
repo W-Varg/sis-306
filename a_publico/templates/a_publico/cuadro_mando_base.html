@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block table %}
+ Punto de Luz
+{% endblock %}
+{% block acciones %}
+<a class="nav-link" href={% url "a_publico:cuadro_mando_create" %}>Crear</a>
+
+<a class="nav-link" href={% url "a_publico:cuadro_mando_list" %}>Listar</a>
+{% endblock  %}
+
+{% block cantidad  %}
+    {{ cuadro_mando_list|length }}
+{% endblock  %}

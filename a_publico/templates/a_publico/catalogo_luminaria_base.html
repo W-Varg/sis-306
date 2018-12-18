@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block table %}
+ Lamparas
+{% endblock %}
+{% block acciones %}
+<a class="nav-link" href={% url "a_publico:catalogo_luminaria_create" %}>Crear</a>
+
+<a class="nav-link" href={% url "a_publico:catalogo_luminaria_list" %}>Listar</a>
+{% endblock  %}
+
+{% block cantidad  %}
+    {{ catalogo_luminaria_list|length }}
+{% endblock  %}

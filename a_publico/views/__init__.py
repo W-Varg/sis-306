@@ -13,6 +13,6 @@ from django.shortcuts import render
 from ..models import PuntoLuz
 
 def index(request):
-    list_luz = PuntoLuz.objects.order_by('-implanterenovacion')[:5]
+    list_luz = PuntoLuz.objects.order_by('-implanterenovacion')
     context = {'puntos_luz':list_luz}
     return render(request, 'index.html',context)

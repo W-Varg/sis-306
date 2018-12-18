@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block table %}
+ Via publica
+{% endblock %}
+{% block acciones %}
+<a class="nav-link" href={% url "a_publico:via_publica_create" %}>Crear</a>
+
+<a class="nav-link" href={% url "a_publico:via_publica_list" %}>Listar</a>
+{% endblock  %}
+
+{% block cantidad  %}
+    {{ via_publica_list|length }}
+{% endblock  %}

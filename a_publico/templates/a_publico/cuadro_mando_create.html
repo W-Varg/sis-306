@@ -1,16 +1,16 @@
 {% extends "a_publico/cuadro_mando_base.html" %}
 
 {% block title %}
-    Create CuadroMando
+    Crear CuadroMando
 {% endblock %}
 
 {% block content %}
 <h1><a href={% url "a_publico:cuadro_mando_list" %}>CuadroMando</a></h1>
-<h2>Create CuadroMando</h2>
+<h2>Crear CuadroMando</h2>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="Crear" />
 </form>
 <a href={% url "a_publico:cuadro_mando_list" %}>Cancel</a>
 {% endblock %}

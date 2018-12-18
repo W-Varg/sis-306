@@ -1,1 +1,13 @@
 {% extends "base.html" %}
+{% block table %}
+ Punto de Luz
+{% endblock %}
+{% block acciones %}
+<a class="nav-link" href={% url "a_publico:punto_luz_create" %}>Crear</a>
+
+<a class="nav-link" href={% url "a_publico:punto_luz_list" %}>Listar</a>
+{% endblock  %}
+
+{% block cantidad  %}
+    {{ punto_luz_list|length }}
+{% endblock  %}

@@ -1,16 +1,16 @@
 {% extends "a_publico/catalogo_lampara_base.html" %}
 
 {% block title %}
-    Create CatalogoLampara
+    Crear Catalogo Lampara
 {% endblock %}
 
 {% block content %}
-<h1><a href={% url "a_publico:catalogo_lampara_list" %}>CatalogoLampara</a></h1>
-<h2>Create CatalogoLampara</h2>
+<h1><a href={% url "a_publico:catalogo_lampara_list" %}>Catalogo Lampara</a></h1>
+<h2>Crear CatalogoLampara</h2>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="Crear" />
 </form>
 <a href={% url "a_publico:catalogo_lampara_list" %}>Cancel</a>
 {% endblock %}

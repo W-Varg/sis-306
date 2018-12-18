@@ -6,15 +6,15 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^create/$',  # NOQA
-        login_required(CuadroMandoCreateView.as_view()),
+        (CuadroMandoCreateView.as_view()),
         name="cuadro_mando_create"),
 
     url(r'^(?P<pk>\d+)/update/$',
-        login_required(CuadroMandoUpdateView.as_view()),
+        (CuadroMandoUpdateView.as_view()),
         name="cuadro_mando_update"),
 
     url(r'^(?P<pk>\d+)/delete/$',
-        login_required(CuadroMandoDeleteView.as_view()),
+        (CuadroMandoDeleteView.as_view()),
         name="cuadro_mando_delete"),
 
     url(r'^(?P<pk>\d+)/$',

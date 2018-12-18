@@ -6,11 +6,11 @@
 
 {% block content %}
     <h1>CatalogoLamparas</h1>
-    <h2><a href={% url "a_publico:catalogo_lampara_create" %}>Create new CatalogoLampara</a></h2>
+    <h2><a href={% url "a_publico:catalogo_lampara_create" %}>Crear  ahora CatalogoLampara</a></h2>
     <ul>
     {% for catalogo_lampara in catalogo_lampara_list %}
-        <li><a href={% url "a_publico:catalogo_lampara_detail" catalogo_lampara.pk %}>{{ catalogo_lampara }}</a> | <a href={% url "a_publico:catalogo_lampara_update" catalogo_lampara.pk %}>Update</a> | <form style="display:inline;" action={% url "a_publico:catalogo_lampara_delete" catalogo_lampara.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_lampara }}?')">{% csrf_token %}
-    <input type="submit" value="Delete" />
+        <li><a href={% url "a_publico:catalogo_lampara_detail" catalogo_lampara.pk %}>{{ catalogo_lampara }}</a> | <a href={% url "a_publico:catalogo_lampara_update" catalogo_lampara.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:catalogo_lampara_delete" catalogo_lampara.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_lampara }}?')">{% csrf_token %}
+    <input type="submit" value="Eliminar" />
     </form></li>
     {% empty %}
         <li>No CatalogoLamparas yet.</li>

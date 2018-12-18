@@ -6,9 +6,9 @@
 
 {% block content %}
     <h1><a href={% url "a_publico:barrio_pedania_list" %}>BarrioPedania</a></h1>
-    <h2>{{ barrio_pedania }} | <a href={% url "a_publico:barrio_pedania_update" barrio_pedania.pk %}>Update</a> | 
+    <h2>{{ barrio_pedania }} | <a href={% url "a_publico:barrio_pedania_update" barrio_pedania.pk %}>Actualizar</a> | 
     <form style="display:inline;" action={% url "a_publico:barrio_pedania_delete" barrio_pedania.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ barrio_pedania }}?')">{% csrf_token %}
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Eliminar" />
     </form>
     </h2>
 {% endblock %}

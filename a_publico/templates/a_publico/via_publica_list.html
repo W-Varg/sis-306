@@ -6,11 +6,11 @@
 
 {% block content %}
     <h1>ViaPublicas</h1>
-    <h2><a href={% url "a_publico:via_publica_create" %}>Create new ViaPublica</a></h2>
+    <h2><a href={% url "a_publico:via_publica_create" %}>Crear  ahora ViaPublica</a></h2>
     <ul>
     {% for via_publica in via_publica_list %}
-        <li><a href={% url "a_publico:via_publica_detail" via_publica.pk %}>{{ via_publica }}</a> | <a href={% url "a_publico:via_publica_update" via_publica.pk %}>Update</a> | <form style="display:inline;" action={% url "a_publico:via_publica_delete" via_publica.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ via_publica }}?')">{% csrf_token %}
-    <input type="submit" value="Delete" />
+        <li><a href={% url "a_publico:via_publica_detail" via_publica.pk %}>{{ via_publica }}</a> | <a href={% url "a_publico:via_publica_update" via_publica.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:via_publica_delete" via_publica.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ via_publica }}?')">{% csrf_token %}
+    <input type="submit" value="Eliminar" />
     </form></li>
     {% empty %}
         <li>No ViaPublicas yet.</li>

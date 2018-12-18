@@ -1,16 +1,16 @@
 {% extends "a_publico/catalogo_soporte_base.html" %}
 
 {% block title %}
-    Create CatalogoSoporte
+    Crear Catalogo de Soporte
 {% endblock %}
 
 {% block content %}
 <h1><a href={% url "a_publico:catalogo_soporte_list" %}>CatalogoSoporte</a></h1>
-<h2>Create CatalogoSoporte</h2>
+<h2>Crear CatalogoSoporte</h2>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="Crear" />
 </form>
 <a href={% url "a_publico:catalogo_soporte_list" %}>Cancel</a>
 {% endblock %}

@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block table %}
+ Barrio pedania
+{% endblock %}
+{% block acciones %}
+<a class="nav-link" href={% url "a_publico:barrio_pedania_create" %}>Crear</a>
+
+<a class="nav-link" href={% url "a_publico:barrio_pedania_list" %}>Listar</a>
+{% endblock  %}
+
+{% block cantidad  %}
+    {{ barrio_pedania_list|length }}
+{% endblock  %}

@@ -14,6 +14,6 @@
 </form>
 <a href={% url "a_publico:catalogo_soporte_detail" catalogo_soporte.pk %}>Cancel</a>
 <form style="display:inline;" action={% url "a_publico:catalogo_soporte_delete" catalogo_soporte.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_soporte }}?')">{% csrf_token %}
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Eliminar" />
 </form>
 {% endblock %}

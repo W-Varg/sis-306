@@ -1,16 +1,16 @@
 {% extends "a_publico/equipos_medida_base.html" %}
 
 {% block title %}
-    Create EquiposMedida
+    Crear Equipos de Medida
 {% endblock %}
 
 {% block content %}
 <h1><a href={% url "a_publico:equipos_medida_list" %}>EquiposMedida</a></h1>
-<h2>Create EquiposMedida</h2>
+<h2>Crear Equipos de Medida</h2>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="Crear" />
 </form>
 <a href={% url "a_publico:equipos_medida_list" %}>Cancel</a>
 {% endblock %}

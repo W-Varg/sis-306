@@ -6,9 +6,9 @@
 
 {% block content %}
     <h1><a href={% url "a_publico:equipos_medida_list" %}>EquiposMedida</a></h1>
-    <h2>{{ equipos_medida }} | <a href={% url "a_publico:equipos_medida_update" equipos_medida.pk %}>Update</a> | 
+    <h2>{{ equipos_medida }} | <a href={% url "a_publico:equipos_medida_update" equipos_medida.pk %}>Actualizar</a> | 
     <form style="display:inline;" action={% url "a_publico:equipos_medida_delete" equipos_medida.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ equipos_medida }}?')">{% csrf_token %}
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Eliminar" />
     </form>
     </h2>
 {% endblock %}
