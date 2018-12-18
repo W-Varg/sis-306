@@ -1,5 +1,6 @@
 aniso8601==3.0.2
 Django==2.1.2
+gunicorn==19.9.0
 django-baker==0.22
 django-filters==0.2.1
 django-map-widgets==0.2.1
