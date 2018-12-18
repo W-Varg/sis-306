@@ -21,6 +21,10 @@
         <li><a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>{{ punto_luz }}</a> | <a href={% url "a_publico:punto_luz_update" punto_luz.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:punto_luz_delete" punto_luz.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ punto_luz }}?')">{% csrf_token %}
     <input type="submit" value="Eliminar" />
     </form></li>
+    <script>
+        latitudes.push('{{ punto_luz.lat }}');
+        longitudes.push('{{punto_luz.lng}}');
+    </script>
     {% empty %}
         <li>No PuntoLuzs yet.</li>
     {% endfor %}
