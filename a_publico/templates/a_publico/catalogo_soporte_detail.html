@@ -6,9 +6,9 @@
 
 {% block content %}
     <h1><a href={% url "a_publico:catalogo_soporte_list" %}>CatalogoSoporte</a></h1>
-    <h2>{{ catalogo_soporte }} | <a href={% url "a_publico:catalogo_soporte_update" catalogo_soporte.pk %}>Actualizar</a> | 
-    <form style="display:inline;" action={% url "a_publico:catalogo_soporte_delete" catalogo_soporte.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_soporte }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
+    <h2>{{ catalogo_soporte }} <a href={% url "a_publico:catalogo_soporte_update" catalogo_soporte.pk %} class="btn btn-success" >Actualizar</a> | 
+    <form style="display:inline;" action={% url "a_publico:catalogo_soporte_delete" catalogo_soporte.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_soporte }}?')">{% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
     </form>
     </h2>
 {% endblock %}

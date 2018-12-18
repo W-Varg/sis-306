@@ -10,10 +10,10 @@
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update" />
+    <input type="submit" class="btn btn-warning" value="Actualizar" />
 </form>
-<a href={% url "a_publico:equipos_medida_detail" equipos_medida.pk %}>Cancel</a>
-<form style="display:inline;" action={% url "a_publico:equipos_medida_delete" equipos_medida.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ equipos_medida }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
+<a href={% url "a_publico:equipos_medida_detail" equipos_medida.pk %} class="btn btn-primary" >Cancel</a>
+<form style="display:inline;" action={% url "a_publico:equipos_medida_delete" equipos_medida.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ equipos_medida }}?')">{% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
 </form>
 {% endblock %}

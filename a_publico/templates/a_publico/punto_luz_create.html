@@ -7,10 +7,44 @@
 {% block content %}
 <h1><a href={% url "a_publico:punto_luz_list" %}>Puntos de Luz</a></h1>
 <h2>Crear PuntoLuz</h2>
+<div class="row">
+    <div class="col-8">
+        <div id="map" style="height:400px; background-color: grey;"></div>
+            
+    </div>
+    <div class="col-4">
+        
+    <form action="" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Crear" />
+    </form>
+    <a href={% url "a_publico:punto_luz_list" %}>Cancel</a>
+    </div>
+</div>
+<script>
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(-19.047869554392786, -65.25960432904049);
+            var mapOptions = {
+              center: myLatlng,
+              zoom: 14
+            };
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Crear" />
-</form>
-<a href={% url "a_publico:punto_luz_list" %}>Cancel</a>
+        var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: '',
+              draggable: true
+        });
+        google.maps.event.addListener(marker, 'position_changed', function() {
+            window.setTimeout(function() {
+                $('#id_lat').val(marker.getPosition().lat());
+                $('#id_lng').val(marker.getPosition().lng());
+            }, 100);
+        });
+    }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 {% endblock %}

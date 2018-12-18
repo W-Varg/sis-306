@@ -8,12 +8,12 @@
 <h1><a href={% url "a_publico:catalogo_luminaria_list" %}>CatalogoLuminaria</a></h1>
 <h2>Update {{ catalogo_luminaria }}</h2>
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" />
+<form action="" method="post" class="">{% csrf_token %}
+    <div class="form-group">{{ form.as_p }}</div>
+    <input type="submit" class="btn btn-warning" value="Actualizar" />
 </form>
-<a href={% url "a_publico:catalogo_luminaria_detail" catalogo_luminaria.pk %}>Cancel</a>
-<form style="display:inline;" action={% url "a_publico:catalogo_luminaria_delete" catalogo_luminaria.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_luminaria }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
+<a href={% url "a_publico:catalogo_luminaria_detail" catalogo_luminaria.pk %} class="btn btn-primary" >Cancel</a>
+<form style="display:inline;" action={% url "a_publico:catalogo_luminaria_delete" catalogo_luminaria.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_luminaria }}?')">{% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
 </form>
 {% endblock %}

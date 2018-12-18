@@ -8,10 +8,10 @@
 <h1>Delete {{ equipos_medida }}</h1>
 
 <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete {{ equipos_medida }}?</p>
+    <p>Realmente Deseas Eliminar {{ equipos_medida }}?</p>
     <input type="submit" value="Confirm" />
 </form>
 
-<a href={% url "a_publico:equipos_medida_detail" equipos_medida.pk %}>Cancel</a>
+<a href={% url "a_publico:equipos_medida_detail" equipos_medida.pk %} class="btn btn-primary" >Cancel</a>
 
 {% endblock %}

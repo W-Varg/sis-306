@@ -1,21 +1,29 @@
 {% extends "a_publico/barrio_pedania_base.html" %}
 
 {% block title %}
-    BarrioPedanias
+BarrioPedanias
 {% endblock %}
 
 {% block content %}
-    <h1>BarrioPedanias</h1>
-    <h2><a href={% url "a_publico:barrio_pedania_create" %}>Crear  ahora BarrioPedania</a></h2>
-    <ul>
-    {% for barrio_pedania in barrio_pedania_list %}
-        <li><a href={% url "a_publico:barrio_pedania_detail" barrio_pedania.pk %}>{{ barrio_pedania }}</a> | <a href={% url "a_publico:barrio_pedania_update" barrio_pedania.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:barrio_pedania_delete" barrio_pedania.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ barrio_pedania }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
-    </form></li>
+<h1>Barrio Pedanias</h1>
+<h2><a href={% url "a_publico:barrio_pedania_create" %} class="btn btn-primary">Crear ahora BarrioPedania</a></h2>
+
+<div class="row"> {% for barrio_pedania in barrio_pedania_list %} <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header bg-transparent">
+                <a href={% url "a_publico:barrio_pedania_detail" barrio_pedania.pk %}>{{ barrio_pedania }} </a></div>
+            <div class="card-footer bg-transparent"> <a href={% url "a_publico:barrio_pedania_update" barrio_pedania.pk %} class="btn btn-success" >Actualizar</a> |
+                <form style="display:inline;" action={% url "a_publico:barrio_pedania_delete" barrio_pedania.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ barrio_pedania }}?')">{% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Eliminar" />
+                </form>
+            </div>
+        </div>
+    </div>
     {% empty %}
+    <ul>
         <li>No BarrioPedanias yet.</li>
-    {% endfor %}
     </ul>
+    {% endfor %}
+</div>
+
 {% endblock %}
-
-

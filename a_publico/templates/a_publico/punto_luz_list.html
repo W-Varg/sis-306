@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>PuntoLuzs</h1>
-    <h2><a href={% url "a_publico:punto_luz_create" %}>Crear  ahora PuntoLuz</a></h2>
+    <h2><a href={% url "a_publico:punto_luz_create" %} class="btn btn-primary">Crear  ahora PuntoLuz</a></h2>
     <script>
     var latitudes = [];
     var longitudes = [];
@@ -16,19 +16,19 @@
     <div id="map" style="height:400px; background-color: grey;" class="col"></div>
     
     </div>
-    <ul>
-    {% for punto_luz in punto_luz_list %}
-        <li><a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>{{ punto_luz }}</a> | <a href={% url "a_publico:punto_luz_update" punto_luz.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:punto_luz_delete" punto_luz.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ punto_luz }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
+     
+    <div class="row">     {% for punto_luz in punto_luz_list %} <div class="col-sm-4">             <div class="card">                 <div class="card-header bg-transparent">
+        <li><a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>{{ punto_luz }} </a></div>                 <div class="card-footer bg-transparent"> <a href={% url "a_publico:punto_luz_update" punto_luz.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;" action={% url "a_publico:punto_luz_delete" punto_luz.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ punto_luz }}?')">{% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
     </form></li>
     <script>
         latitudes.push('{{ punto_luz.lat }}');
         longitudes.push('{{punto_luz.lng}}');
     </script>
     {% empty %}
-        <li>No PuntoLuzs yet.</li>
-    {% endfor %}
-    </ul>
+        <ul> <li>No PuntoLuzs yet.</li></ul>
+    {% endfor %} </div>
+     
     <script>
     function initMap() {
         var uluru= {lat: -19.0372347, lng: -65.2314347}

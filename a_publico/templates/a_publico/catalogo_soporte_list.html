@@ -6,15 +6,15 @@
 
 {% block content %}
     <h1>CatalogoSoportes</h1>
-    <h2><a href={% url "a_publico:catalogo_soporte_create" %}>Crear  ahora CatalogoSoporte</a></h2>
-    <ul>
-    {% for catalogo_soporte in catalogo_soporte_list %}
-        <li><a href={% url "a_publico:catalogo_soporte_detail" catalogo_soporte.pk %}>{{ catalogo_soporte }}</a> | <a href={% url "a_publico:catalogo_soporte_update" catalogo_soporte.pk %}>Actualizar</a> | <form style="display:inline;" action={% url "a_publico:catalogo_soporte_delete" catalogo_soporte.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ catalogo_soporte }}?')">{% csrf_token %}
-    <input type="submit" value="Eliminar" />
-    </form></li>
+    <h2><a href={% url "a_publico:catalogo_soporte_create" %} class="btn btn-primary">Crear  ahora CatalogoSoporte</a></h2>
+     
+    <div class="row">     {% for catalogo_soporte in catalogo_soporte_list %} <div class="col-sm-4">             <div class="card">                 <div class="card-header bg-transparent">
+        <a href={% url "a_publico:catalogo_soporte_detail" catalogo_soporte.pk %}>{{ catalogo_soporte }} </a></div>                 <div class="card-footer bg-transparent"> <a href={% url "a_publico:catalogo_soporte_update" catalogo_soporte.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;" action={% url "a_publico:catalogo_soporte_delete" catalogo_soporte.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_soporte }}?')">{% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
+         </form> </div>             </div>     </div>
     {% empty %}
-        <li>No CatalogoSoportes yet.</li>
-    {% endfor %}
-    </ul>
+        <ul> <li>No CatalogoSoportes yet.</li></ul>
+    {% endfor %} </div>
+     
 {% endblock %}
 

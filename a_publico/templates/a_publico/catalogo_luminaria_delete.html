@@ -8,10 +8,10 @@
 <h1>Delete {{ catalogo_luminaria }}</h1>
 
 <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete {{ catalogo_luminaria }}?</p>
+    <p>Realmente Deseas Eliminar {{ catalogo_luminaria }}?</p>
     <input type="submit" value="Confirm" />
 </form>
 
-<a href={% url "a_publico:catalogo_luminaria_detail" catalogo_luminaria.pk %}>Cancel</a>
+<a href={% url "a_publico:catalogo_luminaria_detail" catalogo_luminaria.pk %} class="btn btn-primary" >Cancel</a>
 
 {% endblock %}
