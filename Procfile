@@ -1,1 +1,1 @@
-web: gunicorn ComercioBol.wsgi
+web: gunicorn alumbrado.wsgi
