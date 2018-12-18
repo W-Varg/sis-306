@@ -4,7 +4,7 @@ from ..views import index
 app_name="a_publico"
 
 urlpatterns = [
-    url(r'/',index, name='index'),
+    path('',index, name='index'),
     url(r'^barrio_pedanias/', include('a_publico.urls.barrio_pedania_urls')),  # NOQA
     url(r'^via_publicas/', include('a_publico.urls.via_publica_urls')),
     url(r'^catalogo_calles/', include('a_publico.urls.catalogo_calle_urls')),
