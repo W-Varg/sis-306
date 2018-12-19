@@ -8,7 +8,7 @@
     <h1>CuadroMandos</h1>
     <h2><a href={% url "a_publico:cuadro_mando_create" %} class="btn btn-primary">Crear  ahora CuadroMando</a></h2>
      
-    <div class="row">     {% for cuadro_mando in cuadro_mando_list %} <div class="col-sm-4">             <div class="card">                 <div class="card-header bg-transparent">
+    <div class="row">     {% for cuadro_mando in cuadro_mando_list %} <div class="col-sm-4 pb-4">             <div class="card">                 <div class="card-header bg-transparent">
         <a href={% url "a_publico:cuadro_mando_detail" cuadro_mando.pk %}>{{ cuadro_mando }} </a></div>                 <div class="card-footer bg-transparent"> <a href={% url "a_publico:cuadro_mando_update" cuadro_mando.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;" action={% url "a_publico:cuadro_mando_delete" cuadro_mando.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ cuadro_mando }}?')">{% csrf_token %}
     <input type="submit" class="btn btn-danger" value="Eliminar" />
          </form> </div>             </div>     </div>

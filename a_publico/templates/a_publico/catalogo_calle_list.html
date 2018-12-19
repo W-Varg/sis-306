@@ -10,13 +10,14 @@ CatalogoCalles
 
 <div class="row">
     {% for catalogo_calle in catalogo_calle_list %}
-    <div class="col-sm-4">
-        <div class="card">
+    <div class="col-sm-4 pb-5">
+        <div class="card ">
             <div class="card-header bg-transparent">
-                <a href={% url "a_publico:catalogo_calle_detail" catalogo_calle.pk %}>{{ catalogo_calle }}</a> <a
-                    href={% url "a_publico:catalogo_calle_update" catalogo_calle.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;"
-                    action={% url "a_publico:catalogo_calle_delete" catalogo_calle.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_calle }}?')">{%
-                    csrf_token %}
+                <a href={% url "a_publico:catalogo_calle_detail" catalogo_calle.pk %}>{{ catalogo_calle }}</a>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href={% url "a_publico:catalogo_calle_update" catalogo_calle.pk %} class="btn btn-success">Actualizar</a>
+                | <form style="display:inline;" action={% url "a_publico:catalogo_calle_delete" catalogo_calle.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_calle }}?')">{%csrf_token %}
                     <input type="submit" class="btn btn-danger" value="Eliminar" />
                 </form>
             </div>
@@ -26,6 +27,7 @@ CatalogoCalles
     <ul>
         <li>No CatalogoCalles yet.</li>
     </ul>
-    {% endfor %} </div>
+    {% endfor %}
+</div>
 
-    {% endblock %}
+{% endblock %}

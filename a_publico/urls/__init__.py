@@ -1,10 +1,12 @@
 from django.conf.urls import include, url
 from django.urls import path
-from ..views import index
+from ..views import index, inf_lampara, inf_mando
 app_name="a_publico"
 
 urlpatterns = [
     path('',index, name='index'),
+    path('inf_mando',inf_mando, name='inf_mando'),
+    path('inf_lamparas',inf_lampara, name='inf_lampara'),
     url(r'^barrio_pedanias/', include('a_publico.urls.barrio_pedania_urls')),  # NOQA
     url(r'^via_publicas/', include('a_publico.urls.via_publica_urls')),
     url(r'^catalogo_calles/', include('a_publico.urls.catalogo_calle_urls')),

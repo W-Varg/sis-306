@@ -8,7 +8,7 @@
     <h1>CatalogoLuminarias</h1>
     <h2><a href={% url "a_publico:catalogo_luminaria_create" %} class="btn btn-primary">Crear  ahora CatalogoLuminaria</a></h2>
      
-    <div class="row">     {% for catalogo_luminaria in catalogo_luminaria_list %} <div class="col-sm-4">             <div class="card">                 <div class="card-header bg-transparent">
+    <div class="row">     {% for catalogo_luminaria in catalogo_luminaria_list %} <div class="col-sm-4 pb-4">             <div class="card">                 <div class="card-header bg-transparent">
         <a href={% url "a_publico:catalogo_luminaria_detail" catalogo_luminaria.pk %}>{{ catalogo_luminaria }} </a></div>                 <div class="card-footer bg-transparent"> <a href={% url "a_publico:catalogo_luminaria_update" catalogo_luminaria.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;" action={% url "a_publico:catalogo_luminaria_delete" catalogo_luminaria.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ catalogo_luminaria }}?')">{% csrf_token %}
     <input type="submit" class="btn btn-danger" value="Eliminar" />
          </form> </div>             </div>     </div>

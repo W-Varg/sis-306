@@ -8,7 +8,7 @@ BarrioPedanias
 <h1>Barrio Pedanias</h1>
 <h2><a href={% url "a_publico:barrio_pedania_create" %} class="btn btn-primary">Crear ahora BarrioPedania</a></h2>
 
-<div class="row"> {% for barrio_pedania in barrio_pedania_list %} <div class="col-sm-4">
+<div class="row"> {% for barrio_pedania in barrio_pedania_list %} <div class="col-sm-4 pb-4">
         <div class="card">
             <div class="card-header bg-transparent">
                 <a href={% url "a_publico:barrio_pedania_detail" barrio_pedania.pk %}>{{ barrio_pedania }} </a></div>

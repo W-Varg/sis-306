@@ -1,54 +1,70 @@
 {% extends "a_publico/punto_luz_base.html" %}
 
 {% block title %}
-    PuntoLuzs
+PuntoLuzs
 {% endblock %}
 
 {% block content %}
-    <h1>PuntoLuzs</h1>
-    <h2><a href={% url "a_publico:punto_luz_create" %} class="btn btn-primary">Crear  ahora PuntoLuz</a></h2>
-    <script>
+<h1>PuntoLuzs</h1>
+<h2><a href={% url "a_publico:punto_luz_create" %} class="btn btn-primary">Crear ahora Punto Luz</a></h2>
+<script>
     var latitudes = [];
     var longitudes = [];
-    </script>
-    <div class="p-3 my-3 rounded shadow-sm row">
-    
+</script>
+<div class="p-3 my-3 rounded shadow-sm row">
     <div id="map" style="height:400px; background-color: grey;" class="col"></div>
-    
+</div>
+
+<div class="row pb-5">
+    {% for punto_luz in punto_luz_list %}
+    <div class="col-sm-4 pb-5">
+        <div class="card ">
+            <div class="card-header bg-transparent">
+                <a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>{{ punto_luz }} </a>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href={% url "a_publico:punto_luz_update" punto_luz.pk %} class="btn btn-success">Actualizar</a>
+                | <form style="display:inline;" action={% url "a_publico:punto_luz_delete" punto_luz.pk %} method="post"
+                    onsubmit="return confirm('Realmente Deseas Eliminar {{ punto_luz }}?')">{% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Eliminar" />
+                </form>
+            </div>
+        </div>
     </div>
-     
-    <div class="row">     {% for punto_luz in punto_luz_list %} <div class="col-sm-4">             <div class="card">                 <div class="card-header bg-transparent">
-        <li><a href={% url "a_publico:punto_luz_detail" punto_luz.pk %}>{{ punto_luz }} </a></div>                 <div class="card-footer bg-transparent"> <a href={% url "a_publico:punto_luz_update" punto_luz.pk %} class="btn btn-success" >Actualizar</a> | <form style="display:inline;" action={% url "a_publico:punto_luz_delete" punto_luz.pk %} method="post" onsubmit="return confirm('Realmente Deseas Eliminar {{ punto_luz }}?')">{% csrf_token %}
-    <input type="submit" class="btn btn-danger" value="Eliminar" />
-    </form></li>
-    <script>
-        latitudes.push('{{ punto_luz.lat }}');
-        longitudes.push('{{punto_luz.lng}}');
-    </script>
-    {% empty %}
-        <ul> <li>No PuntoLuzs yet.</li></ul>
-    {% endfor %} </div>
-     
-    <script>
+                <script>
+                    latitudes.push('{{ punto_luz.lat }}');
+                    longitudes.push('{{punto_luz.lng}}');
+                </script>
+                {% empty %}
+                <ul>
+                    <li>No PuntoLuzs yet.</li>
+                </ul>
+                
+       
+    {% endfor %}
+</div>
+<div class=""></div>
+
+<script>
     function initMap() {
-        var uluru= {lat: -19.0372347, lng: -65.2314347}
+        var uluru = { lat: -19.0372347, lng: -65.2314347 }
         var map = new google.maps.Map(document.getElementById('map'),
-        {
-            center: uluru,
-            zoom: 13
-        });
+            {
+                center: uluru,
+                zoom: 13
+            });
 
         var lugar = {};
         for (let i = 0; i < longitudes.length; i++) {
-            var la = latitudes[i].replace(',','.')*1;
-            var ln = longitudes[i].replace(',','.')*1;
-            
-            lugar = {lat: la, lng: ln};
+            var la = latitudes[i].replace(',', '.') * 1;
+            var ln = longitudes[i].replace(',', '.') * 1;
+
+            lugar = { lat: la, lng: ln };
             // console.log(lugar);
-            var marker = new google.maps.Marker({position: lugar, map: map});
+            var marker = new google.maps.Marker({ position: lugar, map: map });
         }
     }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBE-H3YEkKAyBg5qUw5V-gY8AqADD5CEQ&callback=initMap" async defer></script>      
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd2kayuEH8A0FPKJl6vvIDsTSiXsMp9mc&callback=initMap"
+    async defer></script>
 {% endblock %}
-
