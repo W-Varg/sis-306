@@ -2,11 +2,86 @@
 {% block title %}
 informe de lamparas
 {% endblock title %}
- 
+
 {% block table %}
 informe de lamparas
 {% endblock table %}
 
 {% block content %}
-    informe de lamparas
+<style>
+    .search-table{
+    padding: 10%;
+    margin-top: -6%;
+}
+.search-box{
+    background: #c1c1c1;
+    border: 1px solid #ababab;
+    padding: 3%;
+}
+.search-box input:focus{
+    box-shadow:none;
+    border:2px solid #eeeeee;
+}
+.search-list{
+    background: #fff;
+    border: 1px solid #ababab;
+    border-top: none;
+}
+.search-list h3{
+    background: #eee;
+    padding: 3%;
+    margin-bottom: 0%;
+}
+</style>
+<div class="container search-table">
+    <div class="search-box">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Informe del valor de las LAMPARAS ordenado por cuadro y tipo de LAMPARA</h5>
+            </div>
+
+            <!-- <div class="col-md-9">
+                <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Escribe para Buscar">
+                <script>
+                    $(document).ready(function () {
+                        $("#myInput").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function () {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+            </div>-->
+        </div>
+    </div>
+    <div class="search-list">
+        <h3> {{ lamparas |length }} Registros encontrados</h3>
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Tipo_Lampara</th>
+                    <th>Lampara</th>
+                    <th>Barrio</th>
+                    <th>Calle</th>
+                    <th>Nombre Via</th>
+                    <th>Instalado</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in lamparas %}
+                <tr>
+                    <td>{{ item.codigocuadro.tipocuadro }}</td>
+                    <td>{{ item.codigoluminaria.codigolampara.nombrelampara }}</td>
+                    <td>{{ item.codigobarrio.nombrebarrio }}</td>
+                    <td>{{ item.codigocalle.nombrecalle }}</td>
+                    <td>{{ item.codigocalle.codigotipovia.nombretipovia }}</td>
+                    <td>{{ item.implanterenovacion }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
 {% endblock %}

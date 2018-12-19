@@ -1,12 +1,76 @@
 {% extends "base.html" %}
 {% block title %}
-    informe Cuadro
+informe Cuadro
 {% endblock title %}
- 
+
 {% block table %}
-    informe de cuadro de mando
+informe de cuadro de mando
 {% endblock table %}
 
 {% block content %}
-    informe de cuadro de mando
+<style>
+    .search-table {
+        padding: 10%;
+        margin-top: -6%;
+    }
+
+    .search-box {
+        background: #c1c1c1;
+        border: 1px solid #ababab;
+        padding: 3%;
+    }
+
+    .search-box input:focus {
+        box-shadow: none;
+        border: 2px solid #eeeeee;
+    }
+
+    .search-list {
+        background: #fff;
+        border: 1px solid #ababab;
+        border-top: none;
+    }
+
+    .search-list h3 {
+        background: #eee;
+        padding: 3%;
+        margin-bottom: 0%;
+    }
+</style>
+<div class="container search-table">
+    <div class="search-box">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Informe de los CUADROS DE MANDO con su dirección ordenados por
+                        BARRIOS-PEDANIAS</h5>
+            </div>
+        </div>
+    </div>
+    <div class="search-list">
+        <h3> {{ list_cuadro |length }} Registros encontrados</h3>
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>codigo de identificacion</th>
+                    <th>Barrio</th>
+                    <th>Calle</th>
+                    <th>Nombre Via</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in list_cuadro %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.codigoindentificacion }}</td>
+                    <td>{{ item.codigobarrio.nombrebarrio }}</td>
+                    <td>{{ item.codigocalle.nombrecalle }}</td>
+                    <td>{{ item.codigocalle.codigotipovia.nombretipovia }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
 {% endblock %}
