@@ -12,18 +12,18 @@ principal
 </script>
 <div class="p-3 my-3 rounded shadow-sm row">
 
-   <div id="map" style="height:400px; background-color: grey;" class="col"></div>
-   <div class="col-3">
+   <div id="map" style="height:500px; background-color: grey;" class="col-md-8 col-sm-12"></div>
+   <div class="col-md-4 col-sm-12">
       <div class="list-group" aria-labelledby="">
-         <a class="list-group-item " href="/catalogo_calles">calles</a>
-         <a class="list-group-item" href="/catalogo_lamparas">Lamparas</a>
-         <a class="list-group-item" href="/catalogo_luminarias">Luminarias</a>
-         <a class="list-group-item" href="/catalogo_soportes">Soportes</a>
-         <a class="list-group-item" href="/via_publicas">Via Publica</a>
-         <a class="list-group-item" href="/punto_luzs">Punto de luz</a>
-         <a class="list-group-item" href="/equipos_medidas">Equipos de Medida</a>
-         <a class="list-group-item" href="/cuadro_mandos">Cuadro de Mando</a>
-         <a class="list-group-item" href="/barrio_pedanias">Barrios</a>
+         <a class="list-group-item " href="/catalogo_calles">Abrir Formulario de calles</a>
+         <a class="list-group-item" href="/catalogo_lamparas">Abrir Formulario de Lamparas</a>
+         <a class="list-group-item" href="/catalogo_luminarias">Abrir Formulario de Luminarias</a>
+         <a class="list-group-item" href="/catalogo_soportes">Abrir Formulario de Soportes</a>
+         <a class="list-group-item" href="/via_publicas">Abrir Formulario de Via Publica</a>
+         <a class="list-group-item" href="/punto_luzs">Abrir Formulario de Punto de luz</a>
+         <a class="list-group-item" href="/equipos_medidas">Abrir Formulario de Equipos de Medida</a>
+         <a class="list-group-item" href="/cuadro_mandos">Abrir Formulario de Cuadro de Mando</a>
+         <a class="list-group-item" href="/barrio_pedanias">Abrir Formulario de Barrios Pedania</a>
       </div>
    </div>
 </div>
@@ -50,6 +50,17 @@ principal
    <!-- ================ -->
 
 </div>
+{% block footer %}
+    <footer>
+        <div class="container">
+          <div class="row well ml-t">
+            <div class="col-lg-8 col-md-8">
+              <h4>Desarrollado por: <a href="" target="_blank">Wilver Vargas</a></h4>
+            </div>
+          </div>
+        </div>
+      </footer>
+    {% endblock footer %}
 <script>
    function initMap() {
       var uluru = { lat: -19.0372347, lng: -65.2314347 }
