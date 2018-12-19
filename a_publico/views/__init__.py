@@ -18,24 +18,10 @@ def index(request):
     return render(request, 'index.html',context)
 
 def inf_mando(request):
-    # id_tarjeta = Tarjeta.objects.filter(number=code).values_list('id', flat=True)
-    # if id_tarjeta:
-    #     id_usuario = Persona.objects.filter(tarjetas_id=id_tarjeta[0]).values_list('id', flat=True)
-        
-    #     if id_usuario:
-    #         registro = Registry()
-    #         registro.user_name = Persona.objects.get(pk=id_usuario[0])
-    #         registro.tarjeta = code
-    #         registro.save()
-    #         msg = 'Registro Exitoso: '+code
-    #         alarma(2300,1000)
-    #         status = True
-    
     list_r = CuadroMando.objects.prefetch_related('codigocalle__barriopedania')
     # list_total = Registry.objects.count()
-
     context = {'list_cuadro' : list_r}
-    return render(request,'inf_cuadro.html',context)
+    return render(request, 'inf_cuadro.html',context)
 
 def inf_lampara(request):
     context = {'lamparas' : 'lam'}
