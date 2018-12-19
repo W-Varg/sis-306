@@ -1,16 +1,16 @@
 {% extends "base.html" %}
- {% block title %}
-    Index
- {% endblock title %}
-   {% block table %}
-    principal
-   {% endblock table %}
- {% block content %}
+{% block title %}
+Index
+{% endblock title %}
+{% block table %}
+principal
+{% endblock table %}
+{% block content %}
 <script>
    var latitudes = [];
    var longitudes = [];
 </script>
- <div class="p-3 my-3 rounded shadow-sm row">
+<div class="p-3 my-3 rounded shadow-sm row">
 
    <div id="map" style="height:400px; background-color: grey;" class="col"></div>
    <div class="col-3">
@@ -27,69 +27,49 @@
       </div>
    </div>
 </div>
-   <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Puntos de Luz Instalados Recientemente</h6>
-      <!-- ====================== -->
-      {% if puntos_luz %}
-         {% for item in puntos_luz %}
-         <div class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">{{ item.implanterenovacion }}</strong>
-            Ubicado en Barrio : {{item.codigobarrio }} - la Calle : {{item.codigocalle}} (latitud: {{item.lat}} longitud: {{item.lng}})</p>
-            <script>
-              latitudes.push('{{ item.lat }}');
-              longitudes.push('{{item.lng}}');
-            </script>
-         </div>
-         {% endfor %}
-      {% else %}
-         <p>Registro Vacio.</p>
-      {% endif %}
-      <!-- ================ -->
-
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+   <h6 class="border-bottom border-gray pb-2 mb-0">Puntos de Luz Instalados Recientemente</h6>
+   <!-- ====================== -->
+   {% if puntos_luz %}
+   {% for item in puntos_luz %}
+   <div class="media text-muted pt-3">
+      <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+         <strong class="d-block text-gray-dark">{{ item.implanterenovacion }}</strong>
+         Ubicado en Barrio : {{item.codigobarrio }} - la Calle : {{item.codigocalle}} (latitud: {{item.lat}} longitud:
+         {{item.lng}})</p>
+      <script>
+         latitudes.push('{{ item.lat }}');
+         longitudes.push('{{item.lng}}');
+      </script>
    </div>
-   <script>
-      function initMap() {
-         var uluru= {lat: -19.0372347, lng: -65.2314347}
-         var map = new google.maps.Map(document.getElementById('map'),
+   {% endfor %}
+   {% else %}
+   <p>Registro Vacio.</p>
+   {% endif %}
+   <!-- ================ -->
+
+</div>
+<script>
+   function initMap() {
+      var uluru = { lat: -19.0372347, lng: -65.2314347 }
+      var map = new google.maps.Map(document.getElementById('map'),
          {
             center: uluru,
             zoom: 13
          });
 
-         var lugar = {};
-         for (let i = 0; i < longitudes.length; i++) {
-            var la = latitudes[i].replace(',','.')*1;
-            var ln = longitudes[i].replace(',','.')*1;
-            
-            lugar = {lat: la, lng: ln};
-            // console.log(lugar);
-            var marker = new google.maps.Marker({position: lugar, map: map});
-         }
-         var infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-
-        service.getDetails({
-          placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
-        }, function(place, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var marker = new google.maps.Marker({
-              map: map,
-              position: place.geometry.location
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                'Place ID: ' + place.place_id + '<br>' +
-                place.formatted_address + '</div>');
-              infowindow.open(map, this);
-            });
-          }
-        });
-
+      var lugar = {};
+      for (let i = 0; i < longitudes.length; i++) {
+         var la = latitudes[i].replace(',', '.') * 1;
+         var ln = longitudes[i].replace(',', '.') * 1;
+         lugar = { lat: la, lng: ln };
+         // console.log(lugar);
+         var marker = new google.maps.Marker({ position: lugar, map: map });
       }
-   </script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd2kayuEH8A0FPKJl6vvIDsTSiXsMp9mc&callback=initMap" async defer></script>
+   }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd2kayuEH8A0FPKJl6vvIDsTSiXsMp9mc&callback=initMap"
+   async defer></script>
 
- {% endblock %}
-
+{% endblock %}
